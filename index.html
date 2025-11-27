@@ -391,7 +391,7 @@
                         <!-- Title and Subtitle -->
                         <div class="flex justify-between items-center relative z-10">
                             <div class="flex flex-col">
-                                <h2 class="font-extrabold text-xl leading-snug" id="tableTitle">Skuad Hanyir Sotong</h2>
+                                <h2 class="font-extrabold text-xl leading-snug" id="tableTitle">Skuad Pemburu Sotong</h2>
                                 <p class="text-xs font-medium text-blue-200 uppercase tracking-widest">Komanden Misi (10 Ahli)</p>
                             </div>
                              <!-- Admin Controls Integrated -->
@@ -794,11 +794,11 @@
                                     <h4 class="font-bold text-sm text-gray-800">John</h4>
                                     <!-- UPDATED: Gelaran ringkas -->
                                     <span class="text-[10px] text-blue-600 font-medium uppercase tracking-wide bg-blue-100 px-1.5 py-0.5 rounded">ADMIN SQUAD</span>
-                                    <div class="flex gap-2 mt-2">
-                                        <button onclick="alert('Mendail John...')" class="text-xs bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition flex items-center gap-1">
+                                    <div class="flex flex-col gap-2 mt-2">
+                                        <button onclick="alert('Mendail John...')" class="w-full text-xs bg-green-500 text-white px-2 py-1.5 rounded hover:bg-green-600 transition flex items-center justify-center gap-2">
                                             <i class="fa-brands fa-whatsapp"></i> WhatsApp
                                         </button>
-                                        <button onclick="alert('Mendail John...')" class="text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition flex items-center gap-1">
+                                        <button onclick="alert('Mendail John...')" class="w-full text-xs bg-blue-500 text-white px-2 py-1.5 rounded hover:bg-blue-600 transition flex items-center justify-center gap-2">
                                             <i class="fa-solid fa-phone"></i> Call
                                         </button>
                                     </div>
@@ -814,11 +814,11 @@
                                     <h4 class="font-bold text-sm text-gray-800">ManRemy</h4>
                                     <!-- UPDATED: Gelaran ringkas -->
                                     <span class="text-[10px] text-purple-600 font-medium uppercase tracking-wide bg-purple-100 px-1.5 py-0.5 rounded">ADMIN SQUAD</span>
-                                    <div class="flex gap-2 mt-2">
-                                        <button onclick="alert('Mendail ManRemy...')" class="text-xs bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition flex items-center gap-1">
+                                    <div class="flex flex-col gap-2 mt-2">
+                                        <button onclick="alert('Mendail ManRemy...')" class="w-full text-xs bg-green-500 text-white px-2 py-1.5 rounded hover:bg-green-600 transition flex items-center justify-center gap-2">
                                             <i class="fa-brands fa-whatsapp"></i> WhatsApp
                                         </button>
-                                        <button onclick="alert('Mendail ManRemy...')" class="text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition flex items-center gap-1">
+                                        <button onclick="alert('Mendail ManRemy...')" class="w-full text-xs bg-blue-500 text-white px-2 py-1.5 rounded hover:bg-blue-600 transition flex items-center justify-center gap-2">
                                             <i class="fa-solid fa-phone"></i> Call
                                         </button>
                                     </div>
@@ -1123,7 +1123,7 @@
             const tbody = document.getElementById('memberTableBody');
             tbody.innerHTML = '';
             // TUKAR TAJUK GAH DI SINI
-            document.getElementById('tableTitle').innerText = `Skuad Hanyir Sotong`;
+            document.getElementById('tableTitle').innerText = `Skuad  Sotong`;
             
             // Sorting by Progress (Highest Paid first)
             members.sort((a, b) => {
