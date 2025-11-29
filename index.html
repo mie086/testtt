@@ -698,7 +698,8 @@
                                     <th class="p-3 font-semibold">Nama</th>
                                     <th class="p-3 font-semibold text-center">Prog.</th>
                                     <th class="p-3 font-semibold text-right">Bayar</th>
-                                    <th class="p-3 font-semibold text-right">Baki</th>
+                                    <!-- UPDATED: Column Header Changed from Baki to Rekod/Perincian -->
+                                    <th class="p-3 font-semibold text-center">Rekod</th> 
                                     <th class="p-3 font-semibold text-center admin-col hidden">Action</th>
                                 </tr>
                             </thead>
@@ -877,6 +878,55 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
+    <!-- NEW MODAL: Payment Details -->
+    <div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 backdrop-blur-sm">
+        <div class="bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl transform scale-95 transition-transform" id="detailsModalContent">
+            <div class="flex justify-between items-center mb-4 border-b pb-2">
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800" id="detailMemberName">Nama Ahli</h3>
+                    <p class="text-xs text-gray-500">Sejarah pembayaran.</p>
+                </div>
+                <button onclick="closeDetailsModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-3 max-h-60 overflow-y-auto mb-4 border border-gray-100">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="text-gray-500 border-b border-gray-200">
+                            <th class="pb-2">Tarikh</th>
+                            <th class="pb-2 text-right">Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailsTableBody" class="text-gray-700">
+                        <!-- Content Injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="flex justify-between items-center bg-blue-50 p-3 rounded-lg border border-blue-100">
+                <span class="text-xs font-bold text-blue-800">Jumlah Keseluruhan:</span>
+                <span id="detailTotal" class="text-sm font-bold text-blue-600">RM 0</span>
+            </div>
+            
+            <!-- ---- INSERTED IMPORTANT NOTE (YELLOW) ---- -->
+            <div class="flex gap-2 items-start text-left bg-yellow-50 p-2 rounded-lg border border-yellow-100 w-full mt-3">
+              <i class="fa-solid fa-circle-exclamation text-yellow-500 text-xs mt-0.5"></i>
+        
+              <!-- Flex untuk ayat + butang (butang boleh dibuang jika tidak perlu) -->
+              <div class="flex items-center gap-2">
+                <p class="text-[10px] text-yellow-800 leading-tight">
+                  Sila <strong>MAKLUMKAN</strong> kepada Admin Squad jika terdapat sebarang kesilapan dan <strong>TUNGGU!</strong> 4-5 minit untuk Admin Squad mengemaskini pada sejarah pembayaran.
+                </p>
+              </div>
+            </div>
+            <!-- ---- end inserted note ---- -->
+            
+            <div class="flex justify-center mt-4">
+                 <button onclick="closeDetailsModal()" class="px-6 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 font-medium text-xs">Tutup</button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL: Edit Member Data -->
     <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 backdrop-blur-sm">
         <div class="bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl transform scale-95 transition-transform" id="modalContent">
@@ -972,19 +1022,20 @@
         let currentImageIndex = 0;
 
 
-        // --- MOCK DATA (UPDATED WITH NEW NAMES) ---
-        // Peringatan: Data ini adalah 'mock data' dan tidak disimpan secara kekal.
+        // --- MOCK DATA (UPDATED WITH HISTORY PROPERTY) ---
+        // Peringatan: Data ini adalah 'mock data'.
+        // Added 'history' array to simulate payment details.
         let members = [
-            { id: 1, name: 'Mie', paid: 500 },
-            { id: 2, name: 'John', paid: 150 },
-            { id: 3, name: 'ManRemy', paid: 0 },
-            { id: 4, name: 'Man', paid: 250 },
-            { id: 5, name: 'CheLan', paid: 450 },
-            { id: 6, name: 'AbgLan', paid: 50 },
-            { id: 7, name: 'AbgWan', paid: 500 },
-            { id: 8, name: 'Hariz', paid: 100 },
-            { id: 9, name: 'Rusdi', paid: 390 },
-            { id: 10, name: 'AbgRizal', paid: 0 }
+            { id: 1, name: 'Mie', paid: 500, history: [{date: '2025-01-10', amount: 200}, {date: '2025-02-15', amount: 300}] },
+            { id: 2, name: 'John', paid: 150, history: [{date: '2025-01-20', amount: 150}] },
+            { id: 3, name: 'ManRemy', paid: 100, history: [{date: '2025-02-10', amount: 100}] },
+            { id: 4, name: 'Man', paid: 250, history: [{date: '2025-01-05', amount: 100}, {date: '2025-02-01', amount: 150}] },
+            { id: 5, name: 'CheLan', paid: 450, history: [{date: '2024-12-12', amount: 450}] },
+            { id: 6, name: 'AbgLan', paid: 50, history: [{date: '2025-01-30', amount: 50}] },
+            { id: 7, name: 'AbgWan', paid: 500, history: [{date: '2024-11-20', amount: 500}] },
+            { id: 8, name: 'Hariz', paid: 100, history: [{date: '2025-02-10', amount: 100}] },
+            { id: 9, name: 'Rusdi', paid: 390, history: [{date: '2025-01-15', amount: 190}, {date: '2025-02-20', amount: 200}] },
+            { id: 10, name: 'AbgRizal', paid: 70, history: [{date: '2025-01-15', amount: 50}, {date: '2025-02-20', amount: 20}] }
         ];
 
         let expenses = [
@@ -1171,8 +1222,8 @@
             members.forEach(member => {
                 totalCollected += member.paid;
                 const percentage = Math.min(100, (member.paid / TARGET_PER_PERSON) * 100);
-                const remaining = Math.max(0, TARGET_PER_PERSON - member.paid);
                 
+                // --- UPDATE: Replace Baki Column with Printer Icon ---
                 const row = `
                     <tr class="hover:bg-gray-50 transition border-b border-gray-50 last:border-0">
                         <td class="p-4"><div class="font-bold text-gray-800">${member.name}</div></td>
@@ -1181,7 +1232,11 @@
                             <div class="text-xs text-gray-400 mt-1">${Math.round(percentage)}%</div>
                         </td>
                         <td class="p-4 text-right font-mono text-emerald-700 font-bold">${formatCurrency(member.paid)}</td>
-                        <td class="p-4 text-right font-mono text-red-400 text-sm">${remaining > 0 ? '-' + formatCurrency(remaining) : 'RM 0'}</td>
+                        <td class="p-4 text-center">
+                            <button onclick="openDetailsModal(${member.id})" class="text-gray-400 hover:text-blue-600 transition p-2 rounded-full hover:bg-blue-50" title="Lihat Perincian">
+                                <i class="fa-solid fa-print"></i>
+                            </button>
+                        </td>
                         <td class="p-4 text-center admin-col ${isAdmin ? '' : 'hidden'} whitespace-nowrap">
                             <button onclick="openEditModal(${member.id})" class="text-blue-500 hover:text-blue-700 transition p-2 rounded hover:bg-blue-50 mr-1"><i class="fa-solid fa-pen"></i></button>
                             <button onclick="openDeleteModal(${member.id}, 'member')" class="text-red-400 hover:text-red-600 transition p-2 rounded hover:bg-red-50"><i class="fa-solid fa-trash-can"></i></button>
@@ -1198,6 +1253,63 @@
             
             updateExpenseSummary(totalCollected);
         }
+
+        // --- DETAILS MODAL LOGIC (NEW) ---
+        function openDetailsModal(id) {
+            const member = members.find(m => m.id === id);
+            if (!member) return;
+
+            document.getElementById('detailMemberName').innerText = member.name;
+            const tbody = document.getElementById('detailsTableBody');
+            tbody.innerHTML = '';
+
+            let total = 0;
+
+            if (member.history && member.history.length > 0) {
+                // Sort by date (latest first)
+                member.history.sort((a,b) => new Date(b.date) - new Date(a.date));
+                
+                member.history.forEach(tx => {
+                    total += tx.amount;
+                    tbody.innerHTML += `
+                        <tr class="border-b border-dashed border-gray-100 last:border-0">
+                            <td class="py-2 text-xs">${tx.date}</td>
+                            <td class="py-2 text-right font-mono text-xs font-medium text-gray-700">${formatCurrency(tx.amount)}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                // Fallback if no history but has paid amount (Legacy data support)
+                if (member.paid > 0) {
+                     tbody.innerHTML = `
+                        <tr class="border-b border-dashed border-gray-100">
+                            <td class="py-2 text-xs text-gray-400 italic">Rekod Lama</td>
+                            <td class="py-2 text-right font-mono text-xs font-medium text-gray-700">${formatCurrency(member.paid)}</td>
+                        </tr>
+                    `;
+                    total = member.paid;
+                } else {
+                     tbody.innerHTML = `<tr><td colspan="2" class="py-4 text-center text-xs text-gray-400">Tiada rekod pembayaran.</td></tr>`;
+                }
+            }
+
+            document.getElementById('detailTotal').innerText = formatCurrency(total);
+            
+            const modal = document.getElementById('detailsModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('detailsModalContent').classList.remove('scale-95');
+                document.getElementById('detailsModalContent').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeDetailsModal() {
+             const modal = document.getElementById('detailsModal');
+            document.getElementById('detailsModalContent').classList.remove('scale-100');
+            document.getElementById('detailsModalContent').classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 150);
+        }
+
 
         // --- EXPENSES LOGIC (UPDATED) ---
         function renderExpenses() {
@@ -1540,7 +1652,7 @@
 
         function addMember() {
             const newId = Date.now(); 
-            const newMember = { id: newId, name: "Ahli Baru", paid: 0 };
+            const newMember = { id: newId, name: "Ahli Baru", paid: 0, history: [] };
             members.push(newMember);
             renderTable();
             // Open modal to immediately edit the new member
