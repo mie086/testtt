@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -26,24 +27,22 @@
             padding: 0;
         } 
         
-        /* Desktop Wrapper – Ruang kerja luas dan responsif */
-        #desktop-wrapper {
-            width: 100%;                 /* Guna penuh skrin */
-            max-width: 1600px;           /* Had selesa untuk desktop */
-            margin: 0 auto;              /* Center on screen */
-            min-height: 100vh;           /* Full screen height */
-            background-color: #1e293b;   /* Warna background sama */
-            box-shadow: 0 0 40px rgba(0,0,0,0.4);
+        /* Wrapper for Mobile Screen Resolution and Scroll Effect */
+        #mobile-wrapper {
+            max-width: 480px; /* Max width for high-resolution mobile view */
+            /* Forces content wider than 480px to be scrollable horizontally */
+            min-width: 100%; 
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: #1e293b; /* Dark background inside the phone frame */
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
             position: relative;
-            padding: 20px;               /* Ruang sisi selesa */
         }
-        
-        /* Untuk skrin besar 2K atau ultrawide */
-        @media (min-width: 1800px) {
-            #desktop-wrapper {
-                max-width: 1750px;
-                padding: 40px;
-            }
+
+        @media (min-width: 481px) {
+             #mobile-wrapper {
+                min-width: 480px;
+             }
         }
 
         .glass-panel {
@@ -113,35 +112,6 @@
         }
         .slider-image.active {
             opacity: 1;
-        }
-        
-        /* SLIDER BUTTONS */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.0); /* Transparent */
-            border: none;
-            font-size: 2.5rem;
-            color: white;
-            cursor: pointer;
-            padding: 10px 15px;
-            transition: 0.3s ease;
-            z-index: 20;
-        }
-        
-        .slider-btn:hover {
-            background: rgba(0,0,0,0.25); /* Slight highlight bila hover */
-            border-radius: 8px;
-        }
-        
-        /* Button positions */
-        .slider-btn.prev {
-            left: 10px;
-        }
-        
-        .slider-btn.next {
-            right: 10px;
         }
         
         /* FIX: Ensure content inside Top Stat cards is aligned and clean */
@@ -295,9 +265,6 @@
 
             <!-- NEW: Image Slider Section -->
             <div class="image-slider">
-                <button class="slider-btn prev">&#10094;</button>
-                <button class="slider-btn next">&#10095;</button>
-            
                 <img class="slider-image active" src="images/candat1.jpg" alt="Candat 1">
                 <img class="slider-image" src="images/candat2.jpg" alt="Candat 2">
                 <img class="slider-image" src="images/candat3.jpg" alt="Candat 3">
@@ -1292,27 +1259,7 @@
             { url: "images/candat3.jpg", alt: "Candat 3" },
             { url: "images/candat4.jpg", alt: "Candat 4" }
         ];
-
         let currentImageIndex = 0;
-        const sliderElements = document.querySelectorAll('.slider-image');
-        const prevBtn = document.querySelector('.slider-btn.prev');
-        const nextBtn = document.querySelector('.slider-btn.next');
-        
-        function updateSlider(index) {
-            sliderElements.forEach((img, i) => {
-                img.classList.toggle('active', i === index);
-            });
-        }
-        
-        prevBtn.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex - 1 + sliderElements.length) % sliderElements.length;
-            updateSlider(currentImageIndex);
-        });
-        
-        nextBtn.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex + 1) % sliderElements.length;
-            updateSlider(currentImageIndex);
-        });
 
 
         // --- MOCK DATA (UPDATED WITH HISTORY PROPERTY) ---
