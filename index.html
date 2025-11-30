@@ -129,6 +129,62 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             transform: translateY(-3px);
         }
+        
+        /* POPUP OVERLAY */
+        #popup-warning-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(2px);
+        }
+        
+        /* POPUP BOX */
+        #popup-warning-box {
+            background: #ffffff;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px 24px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        #popup-warning-box h2 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #1e293b;
+            font-weight: 700;
+        }
+        
+        #popup-warning-box p {
+            color: #334155;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.4rem;
+        }
+        
+        #popup-warning-button {
+            background: #0ea5e9;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        #popup-warning-button:active {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body class="text-gray-800 pb-0">
@@ -353,6 +409,18 @@
                 </div>
             </div>
             <!-- END NEW SHORTCUT ROW -->
+
+            <!-- POPUP WARNING -->
+            <div id="popup-warning-overlay" style="display:none;">
+                <div id="popup-warning-box">
+                    <h2>PESANAN:</h2>
+                    <p>
+                        Untuk paparan terbaik, sila <strong>zoom in atau zoom out</strong> 
+                        kerana halaman ini masih dalam versi beta. Terima Kasih.
+                    </p>
+                    <button id="popup-warning-button">Saya Faham</button>
+                </div>
+            </div>
 
             <!-- COMBINED SECTION: Pengenalan & Misi (Replaces old #introSection) -->
             <div id="introMissionSection" class="glass-panel rounded-2xl shadow-lg border-t-4 border-purple-500 relative overflow-hidden scroll-mt-28">
@@ -1281,6 +1349,17 @@
             { id: 102, date: '2025-02-01', category: 'Pengangkutan', detail: 'Bayar Booking (Van Sewa)', amount: 150 },
             { id: 103, date: '2025-02-06', category: 'Pengangkutan', detail: 'Bayar Booking (Full)', amount: 190 }
         ];
+
+        // --- Pop Up(new) ---
+        document.addEventListener("DOMContentLoaded", function () {
+            // Buka popup setiap kali halaman dibuka/refresh
+            document.getElementById("popup-warning-overlay").style.display = "flex";
+        
+            // Tutup popup bila tekan butang
+            document.getElementById("popup-warning-button").onclick = function () {
+                document.getElementById("popup-warning-overlay").style.display = "none";
+            };
+        });
 
         // --- INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', () => {
