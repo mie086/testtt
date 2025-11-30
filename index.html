@@ -264,9 +264,9 @@
 
             <!-- NEW: Image Slider Section -->
             <div class="image-slider">
-                <img class="slider-image active" src="https://placehold.co/1920x250/0f172a/ffffff?text=Candat+Malam+1" onerror="this.onerror=null; this.src='https://placehold.co/1920x250/0f172a/ffffff?text=Candat+Malam+1'" alt="Gambar Mencadat Sotong 1">
-                <img class="slider-image" src="https://placehold.co/1920x250/10b981/ffffff?text=Lampu+Pukat+Memanggil+Sotong" onerror="this.onerror=null; this.src='https://placehold.co/1920x250/10b981/ffffff?text=Lampu+Pukat+Memanggil+Sotong'" alt="Gambar Mencadat Sotong 2">
-                <img class="slider-image" src="https://placehold.co/1920x250/3b82f6/ffffff?text=Bot+Penuh+Semangat" onerror="this.onerror=null; this.src='https://placehold.co/1920x250/3b82f6/ffffff?text=Bot+Penuh+Semangat'" alt="Gambar Mencadat Sotong 3">
+                <img class="slider-image active" src="images/candat1.jpg" alt="Candat 1">
+                <img class="slider-image" src="images/candat2.jpg" alt="Candat 2">
+                <img class="slider-image" src="images/candat3.jpg" alt="Candat 3">
             </div>
             <!-- END NEW: Image Slider Section -->
 
@@ -1251,10 +1251,10 @@
         
         // Image slider data (Sample images related to squid fishing)
         const sliderImages = [
-            { url: "https://placehold.co/1920x250/0f172a/ffffff?text=Candat+Malam+1", alt: "Candat Malam" },
-            { url: "https://placehold.co/1920x250/10b981/ffffff?text=Lampu+Pukat+Memanggil+Sotong", alt: "Lampu Candat" },
-            { url: "https://placehold.co/1920x250/3b82f6/ffffff?text=Bot+Penuh+Semangat", alt: "Bot di Laut" },
-            { url: "https://placehold.co/1920x250/f97316/ffffff?text=Strike+Sotong+!" , alt: "Hasil Tangkapan" }
+            { url: "images/candat1.jpg", alt: "Candat 1" },
+            { url: "images/candat2.jpg", alt: "Candat 2" },
+            { url: "images/candat3.jpg", alt: "Candat 3" },
+            { url: "images/candat4.jpg", alt: "Candat 4" }
         ];
         let currentImageIndex = 0;
 
@@ -1696,8 +1696,6 @@
           // Reset button (mock): confirm -> set all to UNCHECKED -> close categories (NO localStorage)
           if (resetBtn) {
             resetBtn.addEventListener('click', () => {
-              const ok = confirm('Set semula senarai semak ke tetapan asal? Semua tanda tersimpan akan dikosongkan!');
-              if (!ok) return;
           
               // set all to unchecked (mock only)
               getCheckItems().forEach(cb => { cb.checked = false; });
