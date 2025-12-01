@@ -25,21 +25,15 @@
             padding: 0;
         } 
         
-        /* Phone Frame + Auto Scale */
-        #mobile-wrapper {
-            width: 480px;               /* FIXED width – paling penting */
-            max-width: 480px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background-color: #1e293b;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            transform-origin: top center;
-        }
-        
-        /* AUTO SCALE untuk semua skrin kecil */
-        @media (max-width: 480px) {
-            #mobile-wrapper {
-                transform: scale(calc(100vw / 480)); /* skala layout */
+        /* Styles for screens up to 768px wide (e.g., tablets and phones) */
+        @media screen and (max-width: 768px) {
+            /* Mobile-specific styles go here */
+            body {
+                font-size: 14px;
+            }
+            .container {
+                width: 100%;
+                padding: 10px;
             }
         }
 
