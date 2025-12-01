@@ -25,15 +25,17 @@
             padding: 0;
         } 
         
-        /* Styles for screens up to 768px wide (e.g., tablets and phones) */
-        @media screen and (max-width: 768px) {
-            /* Mobile-specific styles go here */
-            body {
-                font-size: 14px;
+        /* Styles for screens up to 480px wide (e.g., smartphones) */
+        @media screen and (max-width: 480px) {
+            /* Smartphone-specific styles go here */
+            h1 {
+                font-size: 20px;
             }
-            .container {
-                width: 100%;
-                padding: 10px;
+            .navigation {
+                display: none; /* Hide desktop navigation */
+            }
+            .mobile-navigation {
+                display: block; /* Show mobile-specific navigation */
             }
         }
 
