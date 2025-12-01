@@ -111,6 +111,32 @@
         .slider-image.active {
             opacity: 1;
         }
+
+        /* Slider Navigation Buttons */
+        .slider-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            backdrop-filter: blur(5px);
+            border-radius: 9999px; /* Fully rounded */
+        }
+        .slider-nav-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .slider-nav-btn.left {
+            left: 10px;
+        }
+        .slider-nav-btn.right {
+            right: 10px;
+        }
         
         /* FIX: Ensure content inside Top Stat cards is aligned and clean */
         .stat-content {
@@ -137,12 +163,12 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: transparent;   /* TIADA lagi hitam gelap */
+            background: rgba(0, 0, 0, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            backdrop-filter: none;     /* tiada blur */
+            backdrop-filter: blur(2px);
         }
         
         /* POPUP BOX */
@@ -324,6 +350,14 @@
                 <img class="slider-image" src="images/candat3.jpg" alt="Candat 3">
                 <img class="slider-image" src="images/candat4.jpg" alt="Candat 4">
                 <img class="slider-image" src="images/candat5.jpg" alt="Candat 5">
+
+                <!-- Navigation Buttons -->
+                <button class="slider-nav-btn left" onclick="changeSlide(-1)">
+                    <i class="fa-solid fa-chevron-left text-lg"></i>
+                </button>
+                <button class="slider-nav-btn right" onclick="changeSlide(1)">
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
             </div>
             <!-- END NEW: Image Slider Section -->
 
@@ -411,7 +445,7 @@
             <!-- END NEW SHORTCUT ROW -->
 
             <!-- POPUP WARNING -->
-            <div id="popup-warning-overlay" style="display:none;">
+            <div id="popup-warning-overlay" style="display: block;">
                 <div id="popup-warning-box">
                     <h2>PESANAN:</h2>
                     <p>
@@ -1326,6 +1360,7 @@
             { url: "images/candat4.jpg", alt: "Candat 4" }
         ];
         let currentImageIndex = 0;
+        let slideInterval; // Variable untuk menampung interval automatik
 
 
         // --- MOCK DATA (UPDATED WITH HISTORY PROPERTY) ---
@@ -1375,27 +1410,49 @@
         });
 
         // --- IMAGE SLIDER LOGIC ---
-        function updateSliderImage() {
-            const images = document.querySelectorAll('.slider-image');
+        
+        // Fungsi untuk menukar imej ke indeks tertentu
+        function goToSlide(index) {
+            const images = document.querySelectorAll('.image-slider .slider-image');
+            if (images.length === 0) return;
             
-            // Fade out current active image
-            images.forEach((img, index) => {
-                if (img.classList.contains('active')) {
-                    img.classList.remove('active');
-                }
-            });
-
-            currentImageIndex = (currentImageIndex + 1) % images.length;
+            // Keluarkan kelas 'active' dari imej semasa
+            images[currentImageIndex].classList.remove('active');
             
-            // Fade in the new active image
+            // Kira indeks baru (pastikan ia berada dalam julat)
+            currentImageIndex = (index + images.length) % images.length;
+            
+            // Tambah kelas 'active' pada imej baru
             images[currentImageIndex].classList.add('active');
         }
 
+        // Fungsi untuk menukar slide berdasarkan arah (+1 atau -1)
+        function changeSlide(direction) {
+            // Hentikan auto-slide buat sementara waktu
+            clearInterval(slideInterval); 
+            
+            // Tukar slide
+            const newIndex = currentImageIndex + direction;
+            goToSlide(newIndex);
+            
+            // Mulakan semula auto-slide selepas jeda interaksi
+            slideInterval = setInterval(() => goToSlide(currentImageIndex + 1), 5000);
+        }
+
+        // Fungsi untuk mengemaskini slide secara automatik
+        function updateSliderImage() {
+            goToSlide(currentImageIndex + 1);
+        }
+
         function startImageSlider() {
-            // Populate slider with data from JS array
             const sliderContainer = document.querySelector('.image-slider');
             if (sliderContainer) {
+                 // Gantikan semua elemen dalam sliderContainer (kecuali butang)
+                 // Ini memastikan imej dari array JS digunakan, bukan HTML mock up
+                 const navButtons = sliderContainer.querySelectorAll('.slider-nav-btn');
                  sliderContainer.innerHTML = '';
+                 
+                 // Masukkan imej
                  sliderImages.forEach((imgData, index) => {
                     const img = document.createElement('img');
                     img.className = 'slider-image';
@@ -1409,10 +1466,13 @@
                     if (index === 0) img.classList.add('active');
                     sliderContainer.appendChild(img);
                  });
+                 
+                 // Masukkan semula butang navigasi (jika ada)
+                 navButtons.forEach(btn => sliderContainer.appendChild(btn));
             }
 
-            // Start the auto change timer
-            setInterval(updateSliderImage, 5000); // Ganti setiap 5 saat
+            // Mulakan auto-slide
+            slideInterval = setInterval(updateSliderImage, 5000); // Ganti setiap 5 saat
         }
 
 
