@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* --- 1. BODY --- */
         body { 
             font-family: 'Poppins', sans-serif; 
@@ -332,7 +336,7 @@
                     </section>
                     
                     <section>
-                        <header class="cat-header flex justify-between cursor-pointer font-bold text-sm text-gray-700" data-target="pakaian">
+                        <header class="cat-header flex justify-between cursor-pointer font-bold text-sm text-gray-700" data-target="memasak">
                             <span><i class="fa-solid fa-utensils text-amber-500 mr-2"></i> Memasak</span><i class="fa-solid fa-chevron-down text-gray-400"></i>
                         </header>
                         <div class="category-body mt-2 pl-6 space-y-2 hidden">
@@ -364,7 +368,7 @@
                     </section>
                     
                     <section>
-                        <header class="cat-header flex justify-between cursor-pointer font-bold text-sm text-gray-700" data-target="pakaian">
+                        <header class="cat-header flex justify-between cursor-pointer font-bold text-sm text-gray-700" data-target="keselamatan">
                             <span><i class="fa-solid fa-shield text-blue-500 mr-2"></i> Keselamatan</span><i class="fa-solid fa-chevron-down text-gray-400"></i>
                         </header>
                         <div class="category-body mt-2 pl-6 space-y-2 hidden">
@@ -384,7 +388,7 @@
                     </section>
                     
                     <section>
-                        <header class="cat-header flex justify-between cursor-pointer font-bold text-sm text-gray-700" data-target="pakaian">
+                        <header class="cat-header flex justify-between cursor-pointer font-bold text-sm text-gray-700" data-target="perubatan">
                             <span><i class="fa-solid fa-kit-medical text-red-500 mr-2"></i> Perubatan</span><i class="fa-solid fa-chevron-down text-gray-400"></i>
                         </header>
                         <div class="category-body mt-2 pl-6 space-y-2 hidden">
@@ -717,6 +721,12 @@
             { id: 102, date: '16-10-2025', category: 'Pengangkutan', detail: 'Bayar Booking (Van VVIP)', amount: 550 }
         ];
 
+        // Parse Tarikh dd-mm-yyyy dengan selamat
+        function parseMYDate(dateStr) {
+            const [day, month, year] = dateStr.split('-').map(Number);
+            return new Date(year, month - 1, day);
+        }
+
         // --- INIT & AUTO POP-UP ---
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Jalankan fungsi utama
@@ -849,9 +859,12 @@
             const container = document.querySelector('.image-slider');
             
             if (slideInterval) clearInterval(slideInterval);
-
-            const navButtons = container.querySelectorAll('.slider-nav-btn');
+        
+            const leftBtn = container.querySelector('.slider-nav-btn.left');
+            const rightBtn = container.querySelector('.slider-nav-btn.right');
+        
             container.innerHTML = ''; 
+        
             sliderImages.forEach((imgData, index) => {
                 const img = document.createElement('img');
                 img.className = 'slider-image' + (index === 0 ? ' active' : '');
@@ -859,29 +872,53 @@
                 img.onerror = function(){ this.src='https://placehold.co/600x400/1e293b/ffffff?text=Image'; };
                 container.appendChild(img);
             });
-            navButtons.forEach(btn => container.appendChild(btn));
+        
+            if (leftBtn) container.appendChild(leftBtn);
+            if (rightBtn) container.appendChild(rightBtn);
             
             slideInterval = setInterval(() => changeSlide(1), 5000);
         }
-        function changeSlide(dir) {
-            const imgs = document.querySelectorAll('.slider-image');
-            imgs[currentImageIndex].classList.remove('active');
-            currentImageIndex = (currentImageIndex + dir + imgs.length) % imgs.length;
-            imgs[currentImageIndex].classList.add('active');
+        function changeSlide(n) {
+            const images = document.querySelectorAll('.slider-image');
+            if (images.length === 0) return; // Elak error jika tiada gambar
+        
+            images[currentImageIndex].classList.remove('active');
+        
+            currentImageIndex += n;
+        
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            }
+        
+            images[currentImageIndex].classList.add('active');
+        
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => changeSlide(1), 5000);
         }
 
-        function formatCurrency(num) { return 'RM ' + num.toLocaleString(); }
+        function formatCurrency(num) { 
+            return num.toLocaleString('ms-MY', { 
+                style: 'currency', 
+                currency: 'MYR',
+                minimumFractionDigits: 0, // Boleh ubah ke 2 jika mahu sen
+                maximumFractionDigits: 0  
+            }); 
+        }
         function renderTable() {
             const tbody = document.getElementById('memberTableBody');
             tbody.innerHTML = '';
-            members.sort((a,b) => b.paid - a.paid);
+        
+            const sortedMembers = [...members].sort((a,b) => b.paid - a.paid);
+            
             let totalCollected = 0;
             
-            members.forEach(m => {
+            sortedMembers.forEach(m => {
                 totalCollected += m.paid;
+                
                 const pct = Math.min(100, (m.paid / TARGET_PER_PERSON) * 100);
                 
-                // GUNA escapeHtml DI SINI
                 const safeName = escapeHtml(m.name);
                 
                 tbody.innerHTML += `
@@ -901,10 +938,14 @@
                         </td>
                     </tr>`;
             });
+        
             document.getElementById('tableSummaryCollected').innerText = formatCurrency(totalCollected);
+            
             const globalPct = (totalCollected / (members.length * TARGET_PER_PERSON)) * 100;
             document.getElementById('tableSummaryProgress').style.width = globalPct + '%';
+            
             updateExpensesSummary(totalCollected);
+            
             document.getElementById('summaryPercentage').innerText = Math.round(globalPct) + '%';
         }
 
@@ -915,10 +956,7 @@
             tbody.innerHTML = '';
         
             const sortedHistory = [...m.history].sort((a, b) => {
-                const dateA = a.date.split('-').reverse().join('-'); 
-                const dateB = b.date.split('-').reverse().join('-');
-                
-                return new Date(dateB) - new Date(dateA); 
+                return parseMYDate(b.date) - parseMYDate(a.date); 
             });
         
             sortedHistory.forEach(h => { 
@@ -927,8 +965,7 @@
                 tbody.innerHTML += `
                     <tr class="border-b border-dashed border-gray-100">
                         <td class="py-1">${safeDateHistory}</td> 
-                        <td class="text-right">${h.amount}</td>
-                    </tr>`; 
+                        <td class="text-right">${formatCurrency(h.amount)}</td> </tr>`; 
             });
         
             document.getElementById('detailTotal').innerText = formatCurrency(m.paid);
@@ -939,18 +976,23 @@
         function renderExpenses() {
             const tbody = document.getElementById('expensesTableBody');
             
+            // --- FIX WAJIB: Kosongkan table sebelum render ---
+            tbody.innerHTML = ''; 
+            // -------------------------------------------------
+        
             if(expenses.length === 0) { 
                 document.getElementById('noExpensesMsg').classList.remove('hidden'); 
                 return; 
+            } else {
+                // Pastikan mesej "Tiada rekod" disembunyikan jika ada data
+                document.getElementById('noExpensesMsg').classList.add('hidden');
             }
         
-            expenses.sort((a,b) => {
-                const dateA = a.date.split('-').reverse().join('-'); 
-                const dateB = b.date.split('-').reverse().join('-');
-                return new Date(dateB) - new Date(dateA);
+            const sortedExpenses = [...expenses].sort((a,b) => {
+                return parseMYDate(b.date) - parseMYDate(a.date);
             });
         
-            expenses.forEach(e => {
+            sortedExpenses.forEach(e => {
                 const safeDate = escapeHtml(e.date);
                 const safeCategory = escapeHtml(e.category);
                 const safeDetail = escapeHtml(e.detail);
@@ -962,7 +1004,7 @@
                             <div class="font-bold text-gray-700">${safeCategory}</div>
                             <div class="text-[10px] text-gray-400">&bull; ${safeDetail}</div>
                         </td>
-                        <td class="p-3 text-right font-bold text-red-500">-${e.amount}</td>
+                        <td class="p-3 text-right font-bold text-red-500">-${formatCurrency(e.amount)}</td>
                     </tr>`;
             });
         }
