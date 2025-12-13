@@ -140,7 +140,7 @@
             <div id="introMissionSection" class="glass-panel rounded-2xl shadow-lg border-t-4 border-purple-500 relative overflow-hidden">
                 <div class="bg-gradient-to-r from-purple-900 to-blue-900 p-4 text-white relative">
                     <div class="absolute right-0 top-0 opacity-10 transform translate-x-4 -translate-y-4"><i class="fa-solid fa-compass text-8xl"></i></div>
-                    <h2 class="font-bold text-lg flex items-center gap-2 relative z-10"><i class="fa-solid fa-book-open-reader"></i> Pengenalan</h2>
+                    <h2 class="font-bold text-lg flex items-center gap-2 relative z-10 uppercase"><i class="fa-solid fa-book-open-reader"></i> Pengenalan</h2>
                 </div>
                 
                 <div class="p-5 bg-white flex flex-col gap-4 text-sm leading-relaxed text-gray-700">
@@ -184,7 +184,7 @@
                          </ul>
 
                         <div class="mt-4 pt-2 border-t border-dashed border-gray-200">
-                             <p class="text-[10px] font-bold text-gray-400 uppercase mb-1 text-center">Motto Rasmi</p>
+                             <p class="text-[10px] font-bold text-gray-400 uppercase mb-1 text-center">Motto Rasmi:</p>
                              <p class="font-serif text-xs text-center text-slate-800 font-bold italic">"Biar Berputih Tulang, Jangan Berputih Mata."</p>
                         </div>
                     </div>
@@ -204,8 +204,8 @@
                     </div>
 
                     <div class="relative z-10">
-                        <h2 class="font-extrabold text-xl leading-snug"><i class="fa-solid fa-hand-holding-dollar"></i> Tabung Pemburu</h2>
-                        <p class="text-xs font-medium text-blue-200 uppercase">Senarai Semak Pembayaran</p>
+                        <h2 class="font-extrabold text-xl leading-snug uppercase"><i class="fa-solid fa-hand-holding-dollar"></i> Tabung Pemburu</h2>
+                        <p class="text-xs font-medium text-blue-200 capitalize">Senarai Semak Pembayaran</p>
                     </div>
                 </div>
 
@@ -250,8 +250,8 @@
                     </div>
 
                     <div class="relative z-10">
-                        <h2 class="font-bold text-lg mb-1 flex items-center gap-2"><i class="fa-solid fa-chart-pie"></i> Laporan Dana</h2>
-                        <p class="text-yellow-200 text-[10px] uppercase tracking-wider">Rekod Perbelanjaan</p>
+                        <h2 class="font-bold text-lg mb-1 flex items-center gap-2 uppercase"><i class="fa-solid fa-chart-pie"></i> Laporan Dana</h2>
+                        <p class="text-yellow-200 text-[10px] capitalize tracking-wider">Rekod Perbelanjaan</p>
                     </div>
                 </div>
                 
@@ -296,8 +296,8 @@
                     </div>
             
                     <div class="relative z-10">
-                        <h3 class="font-bold text-sm flex gap-2 items-center">
-                            <i class="fa-solid fa-clipboard-check text-emerald-400"></i> Senarai Semak Keperluan Trip
+                        <h3 class="font-bold text-sm flex gap-2 items-center uppercase">
+                            <i class="fa-solid fa-clipboard-check text-emerald-400 "></i> Senarai Semak
                         </h3>
                     </div>
                     
@@ -404,11 +404,25 @@
 
             <div id="tentativeSection" class="glass-panel rounded-2xl shadow-sm overflow-hidden h-fit">
                 
-                <div class="bg-indigo-900 p-4 text-white flex justify-between items-center">
-                    <h3 class="font-bold text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-map-location-dot text-yellow-400"></i> Tentatif Program
-                    </h3>
-                    <span class="text-[10px] text-indigo-200 bg-indigo-800 px-2 py-1 rounded">2H 1M</span>
+                <div class="bg-indigo-900 p-4 text-white flex justify-between items-center relative overflow-hidden">
+                    
+                    <div class="absolute right-14 top-1/2 transform -translate-y-1/2 opacity-10 text-white pointer-events-none">
+                    </div>
+                
+                    <div class="relative z-10">
+                        <h3 class="font-bold text-sm flex items-center gap-2 uppercase">
+                            <i class="fa-solid fa-map-location-dot text-cyan-400"></i> Tentatif Program
+                        </h3>
+                        
+                        <p class="text-[10px] text-indigo-300 mt-1 flex items-center gap-2 capitalize tracking-wider">
+                            <i class="fa-solid fa-circle-exclamation text-yellow-400 animate-pulse"></i> Tentatif Akan Dikemaskini
+                        </p>
+                    </div>
+                
+                    <div class="relative z-10">
+                        <span class="text-[10px] text-indigo-200 bg-indigo-800 px-2 py-1 rounded border border-indigo-700">2H 1M</span>
+                    </div>
+                
                 </div>
                 
                 <div class="p-4 bg-white relative">
@@ -416,31 +430,51 @@
                      
                     <div class="space-y-6 relative">
                         <div class="flex gap-4 items-start">
-                            <div class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 border-2 border-white shadow-sm">
+                            <div class="bg-rose-100 text-rose-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 border-2 border-white shadow-sm">
                                 <i class="fa-solid fa-bullhorn text-xs"></i>
                             </div>
-                            <div>
-                                <span class="text-[10px] font-bold text-gray-400 block mb-0.5 uppercase tracking-wide">8:00 AM (Hari 1)</span>
-                                <h4 class="font-bold text-sm text-gray-800">Taklimat Ringkas</h4>
-                                <p class="text-xs text-gray-500 mt-0.5">: Berkumpul di Tempat yang akan dimaklumkan kelak</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Ucapan aluan dan taklimat ringkas oleh <span class="font-bold text-gray-900">John & ManRemy</span></p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Bacaan Doa</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Sesi Bergambar</p>
+                        
+                            <div class="flex-1"> <div onclick="toggleTentative(this)" class="cursor-pointer group select-none">
+                                    <span class="text-[10px] font-bold text-gray-400 block mb-0.5 uppercase tracking-wide">8:00 AM (Hari 1)</span>
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <h4 class="font-bold text-sm text-gray-800 group-hover:text-rose-600 transition">Taklimat Ringkas</h4>
+                                        <i class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"></i>
+                                    </div>
+                                </div>
+                        
+                                <div class="tentative-body hidden mt-2 space-y-1">
+                                    <p class="text-xs text-gray-500">: Berkumpul di Tempat yang akan dimaklumkan kelak</p>
+                                    <p class="text-xs text-gray-500">: Ucapan aluan dan taklimat ringkas oleh <span class="font-bold text-gray-900">John & ManRemy</span></p>
+                                    <p class="text-xs text-gray-500">: Bacaan Doa</p>
+                                    <p class="text-xs text-gray-500">: Sesi Bergambar</p>
+                                </div>
                             </div>
                         </div>
                          
                         <div class="flex gap-4 items-start">
-                            <div class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 border-2 border-white shadow-sm">
+                            <div class="bg-amber-100 text-amber-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 border-2 border-white shadow-sm">
                                 <i class="fa-solid fa-car text-xs"></i>
                             </div>
-                            <div>
-                                <span class="text-[10px] font-bold text-gray-400 block mb-0.5 uppercase tracking-wide">8:30 AM (Hari 1)</span>
-                                <h4 class="font-bold text-sm text-gray-800">Bertolak ke Terengganu</h4>
-                                <p class="text-xs text-gray-500 mt-0.5">: Perjalanan selesa selama 5 jam dari KL ke Terengganu dengan Van VVIP</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Sarapan</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Solat Jamak Zohor & Asar / Jumaat</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Makan Tengahari</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Tiba di Homestay lebih kurang pukul 3.00 PM</p>
+                        
+                            <div class="flex-1">
+                                
+                                <div onclick="toggleTentative(this)" class="cursor-pointer group select-none">
+                                    <span class="text-[10px] font-bold text-gray-400 block mb-0.5 uppercase tracking-wide">8:30 AM (Hari 1)</span>
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <h4 class="font-bold text-sm text-gray-800 group-hover:text-amber-600 transition">Bertolak ke Terengganu</h4>
+                                        <i class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"></i>
+                                    </div>
+                                </div>
+                        
+                                <div class="tentative-body hidden mt-2 space-y-1">
+                                    <p class="text-xs text-gray-500 mt-0.5">: Perjalanan selesa selama 5 jam dari KL ke Terengganu dengan Van VVIP</p>
+                                    <p class="text-xs text-gray-500 mt-0.5">: Sarapan</p>
+                                    <p class="text-xs text-gray-500 mt-0.5">: Solat Jamak Zohor & Asar / Jumaat</p>
+                                    <p class="text-xs text-gray-500 mt-0.5">: Makan Tengahari</p>
+                                    <p class="text-xs text-gray-500 mt-0.5">: Tiba di Homestay lebih kurang pukul 3.00 PM</p>
+                                </div>
                             </div>
                         </div>
 
@@ -448,14 +482,25 @@
                             <div class="bg-emerald-100 text-emerald-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 border-2 border-white shadow-sm">
                                 <i class="fa-solid fa-ship text-xs"></i>
                             </div>
-                            <div>
-                                <span class="text-[10px] font-bold text-gray-400 block mb-0.5 uppercase tracking-wide">8:00 PM (Hari 1)</span>
-                                <h4 class="font-bold text-sm text-gray-800">Operasi Mencadat!</h4>
-                                <p class="text-xs text-gray-500 mt-0.5">: Bertolak menuju ke jeti</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Solat Jamak Magrib / Isyak</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Makan ringan sebelum menaik bot</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Bertolak dengan bot ke kawasan perairan Laut China Selatan</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Aktiviti bebas (Mencadat Sotong / Memancing)</p>
+                        
+                            <div class="flex-1">
+                                
+                                <div onclick="toggleTentative(this)" class="cursor-pointer group select-none">
+                                    <span class="text-[10px] font-bold text-gray-400 block mb-0.5 uppercase tracking-wide">8:00 PM (Hari 1)</span>
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <h4 class="font-bold text-sm text-gray-800 group-hover:text-emerald-600 transition">Operasi Mencadat!</h4>
+                                        <i class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"></i>
+                                    </div>
+                                </div>
+                        
+                                <div class="tentative-body hidden mt-2 space-y-1">
+                                    <p class="text-xs text-gray-500">: Bertolak menuju ke jeti</p>
+                                    <p class="text-xs text-gray-500">: Solat Jamak Magrib & Isyak</p>
+                                    <p class="text-xs text-gray-500">: Alas perut sebelum mencandat</p>
+                                    <p class="text-xs text-gray-500">: Bertolak dengan bot ke kawasan <span class="font-bold text-gray-900">"Hot Spot"</span> sotong</p>
+                                    <p class="text-xs text-gray-500">: Aktiviti bebas (Mencadat / Memancing)</p>
+                                </div>
                             </div>
                         </div>
                          
@@ -466,16 +511,26 @@
                                 <i class="fa-solid fa-person-walking text-xs"></i>
                             </div>
                              
-                            <div class="relative z-10">
-                                <span class="text-[10px] font-bold text-gray-400 block mb-0.5 uppercase tracking-wide">4:00 AM (Hari 2)</span>
-                                <h4 class="font-bold text-sm text-gray-800">Bersurai</h4>
-                                <p class="text-xs text-gray-500 mt-0.5">: Bertolak pulang ke jeti</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Solat Subuh</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Sarapan</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Singgah membeli keropok sebelum pulang</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Bertolak pulang ke KL</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Tiba di KL sebelum asar</p>
-                                <p class="text-xs text-gray-500 mt-0.5">: Bersurai</p>
+                            <div class="flex-1 relative z-10">
+                                
+                                <div onclick="toggleTentative(this)" class="cursor-pointer group select-none">
+                                    <span class="text-[10px] font-bold text-gray-400 block mb-0.5 uppercase tracking-wide">4:00 AM (Hari 2)</span>
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <h4 class="font-bold text-sm text-gray-800 group-hover:text-orange-600 transition">Bersurai</h4>
+                                        <i class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"></i>
+                                    </div>
+                                </div>
+                        
+                                <div class="tentative-body hidden mt-2 space-y-1">
+                                    <p class="text-xs text-gray-500">: Bertolak pulang ke jeti</p>
+                                    <p class="text-xs text-gray-500">: Solat Subuh</p>
+                                    <p class="text-xs text-gray-500">: Sarapan</p>
+                                    <p class="text-xs text-gray-500">: Singgah membeli keropok sebelum pulang</p>
+                                    <p class="text-xs text-gray-500">: Bertolak pulang ke KL</p>
+                                    <p class="text-xs text-gray-500">: Tiba di KL sebelum asar</p>
+                                    <p class="text-xs text-gray-500">: Bersurai</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -491,7 +546,7 @@
                 </div>
                 
                 <div class="p-5">
-                    <p class="text-xs text-gray-500 mb-3 text-center">Ada pertanyaan mengenai trip? Klik untuk hubungi:</p>
+                    <p class="text-xs text-gray-500 mb-3 text-center">Ada pertanyaan mengenai trip? Sila hubungi:</p>
                     <div class="grid grid-cols-2 gap-3">
                         <button onclick="toggleContactModal()" class="group py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 hover:text-blue-700 border border-blue-200 rounded-xl transition-all active:scale-95 flex flex-col items-center justify-center gap-1 shadow-sm">
                             <i class="fa-solid fa-user-secret text-lg mb-1 group-hover:scale-110 transition-transform"></i>
@@ -628,10 +683,21 @@
     <script>
         const TARGET_PER_PERSON = 500;
         const DEADLINE = new Date('2026-05-01');
+    
+        function escapeHtml(text) {
+            if (typeof text !== 'string') return text;
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
         
         // --- DATA MOCKUP ---
         const sliderImages = [{ url: "images/candat1.jpg"}, { url: "images/candat2.jpg"}, { url: "images/candat3.jpg"}, { url: "images/candat4.jpg"}, { url: "images/candat5.jpg"}];
         let currentImageIndex = 0;
+        let slideInterval;
         
         // Tarikh telah ditukar kepada dd-mm-yyyy
         let members = [
@@ -652,13 +718,35 @@
             { id: 102, date: '16-10-2025', category: 'Pengangkutan', detail: 'Bayar Booking (Van VVIP)', amount: 550 }
         ];
 
-        // --- INIT ---
+        // --- INIT & AUTO POP-UP ---
         document.addEventListener('DOMContentLoaded', () => {
+            // 1. Jalankan fungsi utama
             renderTable();
             renderExpenses();
             startImageSlider();
             initChecklist();
+
+            // 2. Jalankan Pop-up Toast (Auto)
+            setTimeout(() => {
+                const toast = document.getElementById('paymentToast');
+                if(toast) {
+                    toast.classList.remove('-translate-x-full', 'opacity-0', 'pointer-events-none');
+                    
+                    window.toastTimer = setTimeout(() => {
+                        closeToast();
+                    }, 5000); 
+                }
+            }, 4000); 
         });
+        
+        function closeToast() {
+            const toast = document.getElementById('paymentToast');
+            if(toast) {
+                toast.classList.add('-translate-x-full', 'opacity-0', 'pointer-events-none');
+                
+                if (window.toastTimer) clearTimeout(window.toastTimer);
+            }
+        }
 
         // --- HELPER TIME (PENTING!) ---
         function getRemainingTime() {
@@ -747,16 +835,22 @@
 
         // --- OTHER FUNCTIONS ---
         function triggerSquidSwim() {
+            if (document.querySelectorAll('.swimming-squid').length >= 5) return;
+
             const squid = document.createElement('div');
             squid.innerText = '🦑'; 
             squid.classList.add('swimming-squid');
             squid.style.top = (Math.floor(Math.random() * 70) + 10) + '%';
             document.body.appendChild(squid);
+            
             setTimeout(() => squid.remove(), 4000);
         }
 
         function startImageSlider() {
             const container = document.querySelector('.image-slider');
+            
+            if (slideInterval) clearInterval(slideInterval);
+
             const navButtons = container.querySelectorAll('.slider-nav-btn');
             container.innerHTML = ''; 
             sliderImages.forEach((imgData, index) => {
@@ -767,7 +861,8 @@
                 container.appendChild(img);
             });
             navButtons.forEach(btn => container.appendChild(btn));
-            setInterval(() => changeSlide(1), 5000);
+            
+            slideInterval = setInterval(() => changeSlide(1), 5000);
         }
         function changeSlide(dir) {
             const imgs = document.querySelectorAll('.slider-image');
@@ -782,18 +877,29 @@
             tbody.innerHTML = '';
             members.sort((a,b) => b.paid - a.paid);
             let totalCollected = 0;
+            
             members.forEach(m => {
                 totalCollected += m.paid;
                 const pct = Math.min(100, (m.paid / TARGET_PER_PERSON) * 100);
+                
+                // GUNA escapeHtml DI SINI
+                const safeName = escapeHtml(m.name);
+                
                 tbody.innerHTML += `
                     <tr class="border-b border-gray-50 hover:bg-gray-50">
-                        <td class="p-3 font-bold text-gray-700">${m.name}</td>
+                        <td class="p-3 font-bold text-gray-700">${safeName}</td>
                         <td class="p-3 text-center">
-                            <div class="w-16 mx-auto bg-gray-200 rounded-full h-1"><div class="bg-emerald-500 h-1 rounded-full" style="width:${pct}%"></div></div>
+                            <div class="w-16 mx-auto bg-gray-200 rounded-full h-1">
+                                <div class="bg-emerald-500 h-1 rounded-full" style="width:${pct}%"></div>
+                            </div>
                             <div class="text-[10px] text-gray-400">${Math.round(pct)}%</div>
                         </td>
                         <td class="p-3 text-center font-mono text-emerald-600 font-bold">${m.paid}</td>
-                        <td class="p-3 text-center"><button onclick="openDetails(${m.id})" class="text-blue-400 hover:text-blue-600"><i class="fa-solid fa-receipt"></i></button></td>
+                        <td class="p-3 text-center">
+                            <button onclick="openDetails(${m.id})" class="text-blue-400 hover:text-blue-600">
+                                <i class="fa-solid fa-receipt"></i>
+                            </button>
+                        </td>
                     </tr>`;
             });
             document.getElementById('tableSummaryCollected').innerText = formatCurrency(totalCollected);
@@ -817,9 +923,11 @@
             });
         
             sortedHistory.forEach(h => { 
+                const safeDateHistory = escapeHtml(h.date); 
+            
                 tbody.innerHTML += `
                     <tr class="border-b border-dashed border-gray-100">
-                        <td class="py-1">${h.date}</td>
+                        <td class="py-1">${safeDateHistory}</td> 
                         <td class="text-right">${h.amount}</td>
                     </tr>`; 
             });
@@ -831,19 +939,29 @@
 
         function renderExpenses() {
             const tbody = document.getElementById('expensesTableBody');
-            if(expenses.length === 0) { document.getElementById('noExpensesMsg').classList.remove('hidden'); return; }
+            
+            if(expenses.length === 0) { 
+                document.getElementById('noExpensesMsg').classList.remove('hidden'); 
+                return; 
+            }
+        
             expenses.sort((a,b) => {
                 const dateA = a.date.split('-').reverse().join('-'); 
                 const dateB = b.date.split('-').reverse().join('-');
                 return new Date(dateB) - new Date(dateA);
             });
+        
             expenses.forEach(e => {
+                const safeDate = escapeHtml(e.date);
+                const safeCategory = escapeHtml(e.category);
+                const safeDetail = escapeHtml(e.detail);
+        
                 tbody.innerHTML += `
                     <tr class="border-b border-gray-50 hover:bg-gray-50">
-                        <td class="p-3 align-top text-gray-500">${e.date}</td>
+                        <td class="p-3 align-top text-gray-500">${safeDate}</td>
                         <td class="p-3">
-                            <div class="font-bold text-gray-700">${e.category}</div>
-                            <div class="text-[10px] text-gray-400">&bull; ${e.detail}</div>
+                            <div class="font-bold text-gray-700">${safeCategory}</div>
+                            <div class="text-[10px] text-gray-400">&bull; ${safeDetail}</div>
                         </td>
                         <td class="p-3 text-right font-bold text-red-500">-${e.amount}</td>
                     </tr>`;
@@ -886,26 +1004,18 @@
             });
         }
 
-        // --- AUTO POP-UP LOGIC ---
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const toast = document.getElementById('paymentToast');
-                if(toast) {
-                    toast.classList.remove('-translate-x-full', 'opacity-0', 'pointer-events-none');
-                    
-                    window.toastTimer = setTimeout(() => {
-                        closeToast();
-                    }, 5000); 
-                }
-            }, 4000); 
-        });
+        // --- FUNGSI UNTUK EXPAND/COLLAPSE TENTATIF ---
+        function toggleTentative(element) {
+            const content = element.nextElementSibling;
+            
+            const icon = element.querySelector('.fa-chevron-down');
         
-        function closeToast() {
-            const toast = document.getElementById('paymentToast');
-            if(toast) {
-                toast.classList.add('-translate-x-full', 'opacity-0', 'pointer-events-none');
-                
-                if (window.toastTimer) clearTimeout(window.toastTimer);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden'); // Buka
+                icon.classList.add('rotate-180');   // Pusing panah ke atas
+            } else {
+                content.classList.add('hidden');    // Tutup
+                icon.classList.remove('rotate-180');// Pusing panah ke bawah
             }
         }
     </script>
