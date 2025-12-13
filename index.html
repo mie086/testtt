@@ -13,10 +13,8 @@
         body { 
             font-family: 'Poppins', sans-serif; 
             
-            /* Warna gelap untuk kawasan luar 'phone' */
             background-color: #0d1b2a; 
             
-            /* BUANG gambar dari body supaya tak melimpah keluar */
             margin: 0; padding: 0;
             min-height: 100vh;
             display: flex; justify-content: center; align-items: flex-start;
@@ -26,15 +24,8 @@
         #mobile-wrapper {
             width: 100%; max-width: 440px; min-height: 100vh;
             
-            background-image: url('images/candat1(no-bg).png');
-            background-size: contain;      /* Gambar ikut lebar wrapper */
-            background-repeat: no-repeat;  /* Jangan ulang gambar */
-            background-position: center top; /* Kedudukan gambar di tengah atas */
-            background-attachment: fixed;  /* Efek 'Parallax' (Gambar statik bila scroll) */
+            background-color: #0f172a; /* Saya gelapkan sikit supaya solid */
             
-            background-color: rgba(15, 23, 42, 0.85); 
-            background-blend-mode: multiply; /* Pilihan: Untuk gambar blend dengan warna biru */
-    
             border-bottom-left-radius: 0; 
             border-bottom-right-radius: 0;
             position: relative; z-index: 1; 
@@ -297,9 +288,20 @@
             </div>
 
             <div id="checklistSection" class="glass-panel rounded-2xl shadow-sm overflow-hidden border border-gray-100">
-                <div class="bg-slate-800 p-4 text-white flex items-center justify-between">
-                    <h3 class="font-bold text-sm flex gap-2"><i class="fa-solid fa-clipboard-check text-emerald-400"></i> Checklist Angler</h3>
+                
+                <div class="bg-slate-800 p-4 text-white flex items-center justify-between relative overflow-hidden">
+                    
+                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2 opacity-20 text-blue-200 pointer-events-none">
+                        <i class="fa-solid fa-suitcase-rolling text-5xl"></i>
                     </div>
+            
+                    <div class="relative z-10">
+                        <h3 class="font-bold text-sm flex gap-2 items-center">
+                            <i class="fa-solid fa-clipboard-check text-emerald-400"></i> Senarai Semak Keperluan Trip
+                        </h3>
+                    </div>
+                    
+                </div>
                 
                 <div class="p-4 bg-white space-y-3">
                     <section>
@@ -539,7 +541,7 @@
             <div class="flex justify-between items-center mb-4 border-b pb-2">
                 <div>
                     <h3 class="font-bold text-lg text-gray-800" id="detailMemberName">Nama Ahli</h3>
-                    <p class="text-xs text-gray-500">Sejarah pembayaran.</p>
+                    <p class="text-xs text-gray-500">Sejarah pembayaran:</p>
                 </div>
                 <button onclick="closeDetailsModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -549,7 +551,7 @@
                     <thead>
                         <tr class="text-gray-500 border-b border-gray-200">
                             <th class="pb-2">Tarikh</th>
-                            <th class="pb-2 text-right">Jumlah</th>
+                            <th class="pb-2 text-right">Jumlah (RM)</th>
                         </tr>
                     </thead>
                     <tbody id="detailsTableBody" class="text-gray-700">
